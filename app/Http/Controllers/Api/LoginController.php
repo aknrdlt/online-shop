@@ -38,7 +38,6 @@ class LoginController extends Controller
      */
     public function __invoke(Request $request): JsonResponse
     {
-        // TODO: Implement __invoke() method.
         try {
             $validateUser = Validator::make($request->all(),
                 [
@@ -57,7 +56,7 @@ class LoginController extends Controller
             if(!Auth::attempt($request->only(['email', 'password']))){
                 return response()->json([
                     'status' => false,
-                    'message' => 'Emaila and password does not match with our record.',
+                    'message' => 'Email and password does not match with our record.',
                 ], 401);
             }
 

@@ -11,7 +11,7 @@ use Laravel\Sanctum\HasApiTokens;
 /**
  * @method static create(array $array)
  */
-class User extends Authenticatable
+final class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 

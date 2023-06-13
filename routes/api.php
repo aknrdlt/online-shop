@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,10 +17,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/register', \App\Http\Controllers\Api\RegisterController::class)->name("register");
 Route::post('/login', \App\Http\Controllers\Api\LoginController::class)->name("login");
+Route::get('/products', [ProductController::class, 'index'])->name("product-list");
+Route::get('/products/{slug}', [ProductController::class, 'showBySlug'])->name("product-by-slug");
 
 Route::middleware('auth:sanctum')->group(function () {
-    // Protected routes
-    // Route::get('/your-endpoint', [YourController::class, 'yourMethod']);
     Route::get('/me', function(Request $request) {
         return auth()->user();
     });

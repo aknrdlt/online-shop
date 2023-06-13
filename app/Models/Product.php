@@ -4,21 +4,21 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
-class Product extends Model
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+/*
+    * @property-read Category|null $category
+    * @property-read string|null $category_name
+*/
+final class Product extends Model
 {
     use HasFactory;
 
     /**
-     * The database table used by the model.
-     *
      * @var string
      */
     protected $table = 'products';
 
     /**
-     * The attributes that are mass assignable.
-     *
      * @var array
      */
     protected $fillable = [
@@ -28,6 +28,16 @@ class Product extends Model
         'weight',
         'width',
         'height',
-        'price'
+        'price',
+        'created_at',
+        'updated_at'
     ];
+    /**
+     * @var bool
+     */
+    public $timestamps = true;
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Product::class, 'id', 'category_id');
+    }
 }

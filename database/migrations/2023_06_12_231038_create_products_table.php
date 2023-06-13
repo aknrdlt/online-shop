@@ -20,6 +20,10 @@ return new class extends Migration
             $table->decimal('height')->nullable();
             $table->decimal('width')->nullable();
             $table->decimal('price')->nullable();
+
+            $table->integer('category_id')->unsigned();
+            $table->foreign('category_id')->references('id')->on('categories');
+
             $table->timestamps();
         });
     }
