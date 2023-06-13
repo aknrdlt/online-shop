@@ -40,4 +40,8 @@ final class Product extends Model
     {
         return $this->belongsTo(Product::class, 'id', 'category_id');
     }
+    public function cart(): BelongsTo
+    {
+        return $this->belongsTo(Cart::class, 'id', 'cart_id');
+    }
 }
