@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\BasketController;
 use App\Http\Controllers\Api\CartController;
+use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -27,7 +28,9 @@ Route::middleware('auth:sanctum')->group(function () {
         return auth()->user();
     });
     Route::post('/cart/create', [CartController::class, 'store'])->name('store-cart');
-    Route::put('/cart   /{id}', [CartController::class, 'update'])->name('update-cart');
+    Route::put('/cart/{id}', [CartController::class, 'update'])->name('update-cart');
     Route::delete('/cart/{id}', [CartController::class, 'destroy'])->name('delete-product');
-//    Route::post('/order/item/{product_id}', [BasketController::class, 'deleteItem']);
+    Route::post('/orders/create', [OrderController::class, 'store'])->name('create-order');
+    Route::get('/orders', [OrderController::class, 'index'])->name('order-list');
+
 });
